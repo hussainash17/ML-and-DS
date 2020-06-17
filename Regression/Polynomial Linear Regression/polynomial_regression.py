@@ -45,3 +45,5 @@ plt.show()
 
 # if we increment the degree of polynomial
 # it will fit much closely and error is much lower
+
+# predicting a new result with Linear regression

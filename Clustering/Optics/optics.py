@@ -41,12 +41,12 @@ optics_model.fit(X_normalized)
 # Producing the labels according to the DBSCAN technique with eps = 0.5
 labels1 = cluster_optics_dbscan(reachability=optics_model.reachability_,
                                 core_distances=optics_model.core_distances_,
-                                ordering=optics_model.ordering_, eps=0.5)
+                                ordering=optics_model.ordering_, eps=0.2)
 
 # Producing the labels according to the DBSCAN technique with eps = 2.0
 labels2 = cluster_optics_dbscan(reachability=optics_model.reachability_,
                                 core_distances=optics_model.core_distances_,
-                                ordering=optics_model.ordering_, eps=2)
+                                ordering=optics_model.ordering_, eps=0.4)
 
 # Creating a numpy array with numbers at equal spaces till
 # the specified range

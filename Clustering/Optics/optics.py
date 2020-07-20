@@ -32,21 +32,21 @@ X_normalized.columns = X.columns
 
 X_normalized.head()
 
-# Building the OPTICS Clustering model
-optics_model = OPTICS(min_samples=10, xi=0.05, min_cluster_size=0.05)
+# OPTICS Clustering model
+optics_model = OPTICS(min_samples=10, min_cluster_size=0.05)
 
 # Training the model
 optics_model.fit(X_normalized)
 
-# Producing the labels according to the DBSCAN technique with eps = 0.5
+# DBSCAN technique with eps = 0.5
 labels1 = cluster_optics_dbscan(reachability=optics_model.reachability_,
                                 core_distances=optics_model.core_distances_,
-                                ordering=optics_model.ordering_, eps=0.2)
+                                ordering=optics_model.ordering_, eps=0.3)
 
-# Producing the labels according to the DBSCAN technique with eps = 2.0
+# DBSCAN technique with eps = 2.0
 labels2 = cluster_optics_dbscan(reachability=optics_model.reachability_,
                                 core_distances=optics_model.core_distances_,
-                                ordering=optics_model.ordering_, eps=0.4)
+                                ordering=optics_model.ordering_, eps=1.0)
 
 # Creating a numpy array with numbers at equal spaces till
 # the specified range
@@ -100,7 +100,7 @@ for Class, colour in zip(range(0, 6), colors):
 ax3.plot(X_normalized.iloc[labels1 == -1, 0],
          X_normalized.iloc[labels1 == -1, 1],
          'k+', alpha=0.1)
-ax3.set_title('DBSCAN clustering with eps = 0.5')
+ax3.set_title('DBSCAN clustering with eps = 0.3')
 
 # Plotting the DBSCAN Clustering with eps = 2.0
 colors = ['c.', 'y.', 'm.', 'g.']
@@ -111,7 +111,7 @@ for Class, colour in zip(range(0, 4), colors):
 ax4.plot(X_normalized.iloc[labels2 == -1, 0],
          X_normalized.iloc[labels2 == -1, 1],
          'k+', alpha=0.1)
-ax4.set_title('DBSCAN Clustering with eps = 2.0')
+ax4.set_title('DBSCAN Clustering with eps = 1.0')
 
 plt.tight_layout()
 plt.show()
